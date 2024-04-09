@@ -1,0 +1,22 @@
+package templates
+
+templ inputField(name string, placeholder string, inputType string) {
+	<input hx-trigger="input change" hx-target="#result" hx-swap="innerHTML" hx-get="/empty" class="p-1 m-1" type={ inputType } name={ name } placeholder={ placeholder }/>
+}
+
+templ Home() {
+	<div class="flex flex-col w-full h-full justify-center items-center">
+		<div class="bg-blue-200 rounded-lg p-6">
+			<form hx-post="/insert-key" hx-trigger="submit" hx-target="#result" hx-headers='{"Accept":"text/html"}' class="m-1 p-1">
+				<h1 class="text-2xl">Welcome to URLier</h1>
+				<div>
+					@inputField("key", "Key", "text")
+					@inputField("url", "URL", "text")
+					@inputField("password", "Password", "password")
+				</div>
+				<button type="submit" class="bg-red-100 w-full cursor-pointer active:bg-red-400 text-center transition-all p-1 pb-0 m-1 mb-0.5 border-solid border-2 rounded-xl border-black">Submit</button>
+			</form>
+			<div id="result" class="p-1 m-1 min-h-10"></div>
+		</div>
+	</div>
+}

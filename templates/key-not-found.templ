@@ -1,0 +1,13 @@
+package templates
+
+css red() {
+	background-color: red;
+}
+
+templ KeyNotFound(key string) {
+	<div class="flex flex-col w-full h-full justify-center items-center">
+		<div class="text-red-600">
+			Key not found: { key }
+		</div>
+	</div>
+}

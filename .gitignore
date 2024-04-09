@@ -1,0 +1,4 @@
+templates/*.go
+templates/*.txt
+tmp
+.env

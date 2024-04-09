@@ -1,0 +1,42 @@
+package templates
+
+templ header(title string) {
+	<head>
+		<title>{ title }</title>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="/public/tailwind.css"/>
+		<link rel="icon" href="/public/icon.png"/>
+		<script src="/public/htmx.min.js"></script>
+	</head>
+}
+
+templ footer() {
+	<footer class="bg-blue-600 p-4 text-center text-gray-200 h-1/12">footer</footer>
+}
+
+templ navLink(href string, text string) {
+	<a class="text-xl text-gray-200 p-2 m-1" href={ templ.URL(href) }>{ text }</a>
+}
+
+templ nav() {
+	<nav>
+		@navLink("/trending", "Trending")
+		@navLink("/tutorial", "Tutorial")
+		@navLink("/about", "About")
+	</nav>
+}
+
+templ Layout(contents templ.Component, title string) {
+	@header(title)
+	<body class="flex flex-col h-full">
+		<header class="bg-blue-600 p-4 w-full flex justify-between items-center h-1/12">
+			<a href="/" class="text-gray-200 text-6xl">URLier</a>
+			@nav()
+		</header>
+		<main class="flex-1 h-5/6">
+			@contents
+		</main>
+	</body>
+	@footer()
+}

@@ -1,0 +1,22 @@
+package templates 
+
+import "urlier/models"
+import "fmt"
+
+templ entryLink(entry models.Entry) {
+	<div class="m-1 p-1 bg-blue-300">
+		<a href={ templ.URL(entry.Key) }>{ entry.Key }</a>
+		<p>{ fmt.Sprintf("%d", entry.Visits) }</p>
+	</div>
+}
+
+templ Trending(entries []models.Entry) {
+	<div class="w-full h-full flex flex-col justify-center items-center">
+		<h2>Trending Entries</h2>
+		<ul>
+			for _, entry := range entries {
+				@entryLink(entry)
+			}
+		</ul>
+	</div>
+}
